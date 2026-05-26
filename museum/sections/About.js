@@ -8,7 +8,7 @@ import {
     whiteMat,
 } from '../shared/helpers.js';
 
-const profilePhoto = './museum/images/file.jpeg';
+const profilePhoto = '/MORAS/museum/images/file.jpeg';
 
 function addPhoto(scene, texturePath, x, y, z, w = 2.2, h = 2.8) {
     const texture = new THREE.TextureLoader().load(texturePath);
