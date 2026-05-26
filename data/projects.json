@@ -1,0 +1,94 @@
+{
+  "projects": [
+    {
+      "id": "proj_001",
+      "title": "Pharmacy POS",
+      "subtitle": "Flutter, Firebase, SQLite, Docker",
+      "year": "2024",
+      "tech": [
+        "Flutter",
+        "Firebase",
+        "SQLite",
+        "Docker"
+      ],
+      "description": "A POS system for pharmacies with 100% offline functionality and cloud sync.",
+      "details": [
+        "Full offline functionality with cloud sync",
+        "Conflict resolution for unsynced sales and stock",
+        "Multi-tab support for up to 10 simultaneous customers",
+        "Real-time stock updates across devices",
+        "Tested in Docker containers for cross-platform reliability"
+      ],
+      "link": "https://github.com/Muhammed-Rashed/POS-pharmacy-app",
+      "images": [
+        "/data/images/Projects/POS.png"
+      ]
+    },
+    {
+      "id": "proj_002",
+      "title": "E-Commerce Platform",
+      "subtitle": "Angular, Node.js, MongoDB",
+      "year": "2024",
+      "tech": [
+        "Angular",
+        "Node.js",
+        "MongoDB"
+      ],
+      "description": "A secure e-commerce website with product search, cart management, and an admin dashboard.",
+      "details": [
+        "JWT authentication and role-based access control",
+        "Admin dashboard with full CRUD on users and products",
+        "API optimized for 1000+ simulated concurrent users",
+        "Angular route guards and backend validation",
+        "Password hashing and secure profile management"
+      ],
+      "link": "https://github.com/Muhammed-Rashed/Ecommerce",
+      "images": [
+        "/data/images/Projects/Ecommerce.png"
+      ]
+    },
+    {
+      "id": "proj_003",
+      "title": "Budgeting App Cero",
+      "subtitle": "Java, SQLite, JavaFX",
+      "year": "2024",
+      "tech": [
+        "Java",
+        "SQLite",
+        "JavaFX"
+      ],
+      "description": "A personal finance management app built in a team of 3.",
+      "details": [
+        "GUI designed with JavaFX for clear navigation",
+        "Summary tab, Reminders, and Income Sources features",
+        "Categorized expense and income tracking",
+        "Visual summaries with persistent SQLite storage"
+      ],
+      "link": null,
+      "images": [
+        "/data/images/Projects/Cero.png"
+      ]
+    },
+    {
+      "id": "proj_004",
+      "title": "Gama Glam",
+      "subtitle": "C++, Qt — Image Editor",
+      "year": "2024",
+      "tech": [
+        "C++",
+        "Qt"
+      ],
+      "description": "A lightweight desktop image editor built in a team of 3.",
+      "details": [
+        "Real-time preview functionality",
+        "7 of 20+ image filters implemented",
+        "Support for multiple image formats",
+        "Optimized rendering performance"
+      ],
+      "link": "https://youtu.be/uHtrEmaXqQE?si=DTDfmjsU4Gc3xglW",
+      "images": [
+        "/data/images/Projects/GamaGlam.png"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "experience": [
+    {
+      "id": "exp_001",
+      "company": "Developer Student Club (DSC)",
+      "role": "Backend Developer & Tester",
+      "start": "4/2025",
+      "end": "present",
+      "location": "Cairo University",
+      "description": "Worked as a backend developer and tester in a student-led team.",
+      "details": [
+        "Built and tested backend APIs using Node.js and MongoDB",
+        "Ensured system reliability and security",
+        "Collaborated with frontend team for integration",
+        "Resolved bugs across the full stack"
+      ]
+    },
+    {
+      "id": "exp_002",
+      "company": "Freelancing",
+      "role": "Backend Developer & Tester",
+      "start": "9/2025",
+      "end": "11/2025",
+      "location": "Remote",
+      "description": "Tested and worked on the backend of an AI driven project.",
+      "details": [
+        "Fixed bugs and maintained backend code",
+        "Assisted in keeping the codebase stable",
+        "Helped relieve team workload on non-AI tasks"
+      ]
+    }
+  ]
+}

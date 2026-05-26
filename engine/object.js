@@ -1,0 +1,111 @@
+import * as THREE from 'three';
+import { objectStates } from './states.js';
+import { Transform, SphereCollider, PlaneCollider, BoxCollider } from './structs.js';
+
+class PhysicsObject {
+    /**
+     * @param {THREE.BufferGeometry} shape
+     * @param {number} mass
+     * @param {THREE.Material} [material]
+     * @param {THREE.Quaternion} [quaternion]
+     * @param {object} [options]
+     * @param {boolean} [options.pickable=false]
+     * @param {boolean} [options.readable=false] - also sets pickable
+     */
+    constructor(shape, mass = 1, material, quaternion, options = {}) {
+        this.mass = mass;
+        this.state = objectStates.falling;
+        this.velocity = new THREE.Vector3();
+        this.force = new THREE.Vector3();
+        this.angularVelocity = new THREE.Vector3();
+        this.transform = new Transform();
+        this.collider = null;
+        this.debugMesh = null;
+
+        if (!material) {
+            material = new THREE.MeshBasicMaterial({ color: Math.random() * 0xffffff });
+        }
+        this.mesh = new THREE.Mesh(shape, material);
+
+        if (quaternion) {
+            this.transform.quaternion.copy(quaternion);
+        }
+
+        this.position = this.transform.position;
+
+        if (this.mass === Infinity) {
+            this.invMass = 0;
+            this.invInertia = 0;
+        } else {
+            this.invMass = 1 / this.mass;
+            this.inertia = this.mass;
+            this.invInertia = 1 / this.inertia;
+        }
+
+        this.readable = options.readable ?? false;
+        this.pickable = this.readable || (options.pickable ?? false);
+        this.readableId = options.readableId ?? null;
+    }
+
+    static sphere(radius = 0.5, mass = 1, material, options = {}) {
+        const obj = new PhysicsObject(
+            new THREE.SphereGeometry(radius, 16, 16),
+            mass,
+            material,
+            undefined,
+            options
+        );
+        obj.collider = new SphereCollider(radius);
+        if (mass !== Infinity) {
+            obj.inertia = (2 / 5) * mass * radius * radius;
+            obj.invInertia = 1 / obj.inertia;
+        }
+        return obj;
+    }
+
+    static plane(width = 50, height = 50, material, options = {}) {
+        const obj = new PhysicsObject(
+            new THREE.PlaneGeometry(width, height),
+            Infinity,
+            material,
+            undefined,
+            options
+        );
+        obj.collider = new PlaneCollider(height, width);
+        obj.invMass = 0;
+        obj.invInertia = 0;
+        return obj;
+    }
+
+    static cube(sizeX = 1, sizeY, sizeZ, mass = 1, material, options = {}) {
+        if (typeof sizeY !== 'number' || typeof sizeZ !== 'number') {
+            options = material ?? {};
+            material = sizeZ;
+            mass = typeof sizeY === 'number' ? sizeY : 1;
+            sizeY = sizeX;
+            sizeZ = sizeX;
+        }
+
+        const geo = new THREE.BoxGeometry(sizeX, sizeY, sizeZ);
+
+        const obj = new PhysicsObject(geo, mass, material, undefined, options);
+
+        if (options.rotY) {
+            obj.transform.quaternion.setFromAxisAngle(
+                new THREE.Vector3(0, 1, 0), options.rotY
+            );
+        }
+
+        obj.collider = new BoxCollider(
+            new THREE.Vector3(sizeX / 2, sizeY / 2, sizeZ / 2)
+        );
+
+        if (mass !== Infinity) {
+            obj.inertia = (1 / 12) * mass * (sizeY * sizeY + sizeZ * sizeZ);
+            obj.invInertia = 1 / obj.inertia;
+        }
+        return obj;
+    }
+}
+
+export { PhysicsObject };
