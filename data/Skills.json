@@ -6,35 +6,35 @@
       "items": [
         {
           "name": "Python",
-          "icon": "/data/images/Programming_lan/python.png"
+          "icon": "./data/images/Programming_lan/python.png"
         },
         {
           "name": "C++",
-          "icon": "/data/images/Programming_lan/c-.png"
+          "icon": "./data/images/Programming_lan/c-.png"
         },
         {
           "name": "C#",
-          "icon": "/data/images/Programming_lan/c-sharp.png"
+          "icon": "./data/images/Programming_lan/c-sharp.png"
         },
         {
           "name": "Java",
-          "icon": "/data/images/Programming_lan/java.png"
+          "icon": "./data/images/Programming_lan/java.png"
         },
         {
           "name": "JavaScript",
-          "icon": "/data/images/Programming_lan/java-script.png"
+          "icon": "./data/images/Programming_lan/java-script.png"
         },
         {
           "name": "Dart",
-          "icon": "/data/images/Programming_lan/icons8-dart-48.png"
+          "icon": "./data/images/Programming_lan/icons8-dart-48.png"
         },
         {
           "name": "HTML",
-          "icon": "/data/images/Programming_lan/html-5.png"
+          "icon": "./data/images/Programming_lan/html-5.png"
         },
         {
           "name": "CSS",
-          "icon": "/data/images/Programming_lan/css-3.png"
+          "icon": "./data/images/Programming_lan/css-3.png"
         }
       ]
     },
@@ -44,27 +44,27 @@
       "items": [
         {
           "name": "Django",
-          "icon": "/data/images/Framework_libs/icons8-django-96.png"
+          "icon": "./data/images/Framework_libs/icons8-django-96.png"
         },
         {
           "name": "Flutter",
-          "icon": "/data/images/Framework_libs/icons8-flutter-48.png"
+          "icon": "./data/images/Framework_libs/icons8-flutter-48.png"
         },
         {
           "name": "Angular",
-          "icon": "/data/images/Framework_libs/programing.png"
+          "icon": "./data/images/Framework_libs/programing.png"
         },
         {
           "name": "React",
-          "icon": "/data/images/Framework_libs/atom.png"
+          "icon": "./data/images/Framework_libs/atom.png"
         },
         {
           "name": "Node.js",
-          "icon": "/data/images/Framework_libs/icons8-node-js-48.png"
+          "icon": "./data/images/Framework_libs/icons8-node-js-48.png"
         },
         {
           "name": "Qt",
-          "icon": "/data/images/Framework_libs/icons8-qt-500.png"
+          "icon": "./data/images/Framework_libs/icons8-qt-500.png"
         }
       ]
     },
@@ -74,19 +74,19 @@
       "items": [
         {
           "name": "MySQL",
-          "icon": "/data/images/Databases/icons8-mysql-96.png"
+          "icon": "./data/images/Databases/icons8-mysql-96.png"
         },
         {
           "name": "PostgreSQL",
-          "icon": "/data/images/Databases/icons8-postgresql-240.png"
+          "icon": "./data/images/Databases/icons8-postgresql-240.png"
         },
         {
           "name": "MongoDB",
-          "icon": "/data/images/Databases/icons8-mongodb-96.png"
+          "icon": "./data/images/Databases/icons8-mongodb-96.png"
         },
         {
           "name": "SQLite",
-          "icon": "/data/images/Databases/icons8-sqlite-500.png"
+          "icon": "./data/images/Databases/icons8-sqlite-500.png"
         }
       ]
     },
@@ -96,23 +96,23 @@
       "items": [
         {
           "name": "Git",
-          "icon": "/data/images/Tools/icons8-git-240.png"
+          "icon": "./data/images/Tools/icons8-git-240.png"
         },
         {
           "name": "Docker",
-          "icon": "/data/images/Tools/icons8-docker-96.png"
+          "icon": "./data/images/Tools/icons8-docker-96.png"
         },
         {
           "name": "GitHub",
-          "icon": "/data/images/Tools/icons8-github-logo-375.png"
+          "icon": "./data/images/Tools/icons8-github-logo-375.png"
         },
         {
           "name": "Firebase",
-          "icon": "/data/images/Tools/icons8-firebase-480.png"
+          "icon": "./data/images/Tools/icons8-firebase-480.png"
         },
         {
           "name": "Postman",
-          "icon": "/data/images/Tools/icons8-postman-api-64.png"
+          "icon": "./data/images/Tools/icons8-postman-api-64.png"
         }
       ]
     }
