@@ -7,7 +7,8 @@ import {
     dimMat,
     whiteMat,
 } from '../shared/helpers.js';
-import profilePhoto from '../images/file.jpeg';
+
+const profilePhoto = './museum/images/file.jpeg';
 
 function addPhoto(scene, texturePath, x, y, z, w = 2.2, h = 2.8) {
     const texture = new THREE.TextureLoader().load(texturePath);
