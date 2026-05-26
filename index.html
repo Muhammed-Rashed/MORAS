@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MORAS</title>
-    <style>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>MORAS</title>
+        <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { background: #000; overflow: hidden; }
         canvas { display: block; }
@@ -53,17 +53,26 @@
             color: #0a0a0a;
         }
     </style>
-</head>
-<body>
-    <div id="splash">
-        <h1>MORAS</h1>
-        <p>A walkable portfolio museum</p>
-        <button id="enter-btn">Enter Museum</button>
-    </div>
+    </head>
+    <body>
+        <div id="splash">
+            <h1>MORAS</h1>
+            <p>A walkable portfolio museum</p>
+            <button id="enter-btn">Enter Museum</button>
+        </div>
 
-    <script type="module" src="./main.js"></script>
+        <script type="importmap">
+    {
+        "imports": {
+            "three": "https://cdn.jsdelivr.net/npm/three@0.165.0/build/three.module.js",
+            "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.165.0/examples/jsm/"
+        }
+    }
+    </script>
 
-    <script>
+        <script type="module" src="./main.js"></script>
+
+        <script>
         document.getElementById('enter-btn').addEventListener('click', () => {
             const splash = document.getElementById('splash');
             splash.style.opacity = '0';
@@ -72,5 +81,5 @@
             document.querySelector('canvas')?.requestPointerLock();
         });
     </script>
-</body>
+    </body>
 </html>
