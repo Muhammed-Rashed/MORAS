@@ -26,7 +26,7 @@ export function getFont(cb) {
     _fontCallbacks.push(cb);
     if (_fontLoading) return;
     _fontLoading = true;
-    new FontLoader().load('/fonts/helvetiker_regular.typeface.json', (font) => {
+    new FontLoader().load('/MORAS/fonts/helvetiker_regular.typeface.json', (font) => {
         _font = font;
         _fontCallbacks.forEach(fn => fn(font));
         _fontCallbacks.length = 0;
