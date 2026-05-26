@@ -21,7 +21,7 @@
       ],
       "link": "https://github.com/Muhammed-Rashed/POS-pharmacy-app",
       "images": [
-        "/data/images/Projects/POS.png"
+        "./data/images/Projects/POS.png"
       ]
     },
     {
@@ -44,7 +44,7 @@
       ],
       "link": "https://github.com/Muhammed-Rashed/Ecommerce",
       "images": [
-        "/data/images/Projects/Ecommerce.png"
+        "./data/images/Projects/Ecommerce.png"
       ]
     },
     {
@@ -66,7 +66,7 @@
       ],
       "link": null,
       "images": [
-        "/data/images/Projects/Cero.png"
+        "./data/images/Projects/Cero.png"
       ]
     },
     {
@@ -87,7 +87,7 @@
       ],
       "link": "https://youtu.be/uHtrEmaXqQE?si=DTDfmjsU4Gc3xglW",
       "images": [
-        "/data/images/Projects/GamaGlam.png"
+        "./data/images/Projects/GamaGlam.png"
       ]
     }
   ]
