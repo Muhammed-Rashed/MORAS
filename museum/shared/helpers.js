@@ -135,7 +135,7 @@ export function addPillar(scene, physicsWorld, x, z) {
 
 // Exhibit items (paper / book) on a pillar
 export function addPaper(scene, physicsWorld, x, z, data) {
-    const obj = PhysicsObject.cube(0.4, 0.05, 0.55, 0.1, paperMat);
+    const obj = PhysicsObject.cube(0.4, 0.05, 0.55, 0.1, paperMat.clone());
     obj.transform.position.set(x, 1.33, z);
     obj.mesh.position.set(x, 1.33, z);
     obj.mesh.rotation.x = Math.PI / 2;
@@ -148,7 +148,7 @@ export function addPaper(scene, physicsWorld, x, z, data) {
 }
 
 export function addBook(scene, physicsWorld, x, z, data) {
-    const obj = PhysicsObject.cube(0.25, 0.35, 0.4, 0.3, bookMat);
+    const obj = PhysicsObject.cube(0.25, 0.35, 0.4, 0.3, bookMat.clone());
     obj.transform.position.set(x, 1.38, z);
     obj.mesh.position.set(x, 1.38, z);
     obj.mesh.rotation.x = Math.PI / 2;

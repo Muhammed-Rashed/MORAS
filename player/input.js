@@ -1,9 +1,7 @@
-// input.js — keyboard state tracker
-
 export const keys = {
     w: false, a: false, s: false, d: false,
     space: false, e: false, f: false,
-    crouch: false,
+    crouch: false, sprint: false,
 };
 
 document.addEventListener('keydown', (e) => {
@@ -15,6 +13,7 @@ document.addEventListener('keydown', (e) => {
     if (e.code === 'KeyE') keys.e = true;
     if (e.code === 'KeyF') keys.f = true;
     if (e.code === 'KeyC') keys.crouch = true;
+    if (e.code === 'ShiftLeft' || e.code === 'ShiftRight') keys.sprint = true;
     if (['Space', 'KeyW', 'KeyA', 'KeyS', 'KeyD'].includes(e.code)) e.preventDefault();
 });
 
@@ -27,4 +26,5 @@ document.addEventListener('keyup', (e) => {
     if (e.code === 'KeyE') keys.e = false;
     if (e.code === 'KeyF') keys.f = false;
     if (e.code === 'KeyC') keys.crouch = false;
+    if (e.code === 'ShiftLeft' || e.code === 'ShiftRight') keys.sprint = false;
 });

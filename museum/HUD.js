@@ -14,6 +14,7 @@ crosshair.style.cssText = `
     top: 50%; left: 50%;
     transform: translate(-50%, -50%);
     width: 16px; height: 16px;
+    transition: transform 0.12s ease;
 `;
 crosshair.innerHTML = `
     <svg viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -55,9 +56,11 @@ controls.style.cssText = `
 `;
 controls.innerHTML = `
     WASD — move<br>
+    SHIFT — sprint<br>
     SPACE — jump<br>
+    C — crouch<br>
     E — pick up / throw<br>
-    F — read item<br>
+    F — read / open link<br>
     Click — lock mouse
 `;
 
@@ -77,5 +80,64 @@ export function setCrosshairHover(on) {
     crosshair.style.transform = on
         ? 'translate(-50%, -50%) scale(1.35)'
         : 'translate(-50%, -50%) scale(1)';
-    crosshair.style.transition = 'transform 0.12s ease';
+}
+
+const pickupHint = document.createElement('div');
+pickupHint.style.cssText = `
+    position: fixed;
+    bottom: calc(50% - 64px);
+    left: 50%;
+    transform: translateX(-50%);
+    pointer-events: none;
+    z-index: 50;
+
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+
+    background: rgba(8, 8, 8, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(6px);
+    border-radius: 3px;
+    padding: 0.38rem 0.85rem 0.38rem 0.55rem;
+
+    font-family: 'Courier New', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.12em;
+    color: #c8c8c8;
+    white-space: nowrap;
+
+    opacity: 0;
+    transition: opacity 0.18s ease;
+`;
+
+const keyBadge = document.createElement('span');
+keyBadge.textContent = 'E';
+keyBadge.style.cssText = `
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.4em;
+    height: 1.4em;
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 2px;
+    font-size: 0.8rem;
+    color: #fff;
+    background: rgba(255,255,255,0.07);
+    flex-shrink: 0;
+`;
+
+const hintLabel = document.createElement('span');
+
+pickupHint.append(keyBadge, hintLabel);
+document.body.appendChild(pickupHint);
+
+export function setPickupHint(text) {
+    if (text) {
+        // Strip the "E — " prefix since the badge already shows E
+        hintLabel.textContent = text.replace(/^E\s*[—–-]+\s*/i, '');
+        pickupHint.style.opacity = '1';
+    } else {
+        pickupHint.style.opacity = '0';
+    }
 }
