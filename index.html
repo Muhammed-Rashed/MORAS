@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-select=no" />
         <title>MORAS</title>
         <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -52,9 +52,64 @@
             background: #c8a96e;
             color: #0a0a0a;
         }
+
+        #orientation-blocker {
+            display: none; /* Hidden on desktop */
+            position: fixed;
+            inset: 0;
+            background: #0a0a0a;
+            color: #e8e0cc;
+            z-index: 99999; /* Higher than any UI layers */
+            font-family: 'Courier New', monospace;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .phone-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            animation: rotatePhone 2.5s ease-in-out infinite;
+        }
+
+        #orientation-blocker h2 {
+            color: #c8a96e;
+            font-size: 1.3rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        #orientation-blocker p {
+            color: #888;
+            font-size: 0.9rem;
+            font-style: italic;
+        }
+
+        @keyframes rotatePhone {
+            0% { transform: rotate(0deg); }
+            40% { transform: rotate(-90deg); }
+            60% { transform: rotate(-90deg); }
+            100% { transform: rotate(0deg); }
+        }
+
+        /* Target touch devices when held vertically */
+        @media screen and (orientation: portrait) and (pointer: coarse) {
+            #orientation-blocker {
+                display: flex;
+            }
+        }
     </style>
     </head>
     <body>
+        <div id="orientation-blocker">
+            <div class="phone-icon">🔄</div>
+            <h2>Please Rotate Your Device</h2>
+            <p>This virtual museum requires landscape mode.</p>
+        </div>
+
         <div id="splash">
             <h1>MORAS</h1>
             <p>A walkable portfolio museum</p>
@@ -77,8 +132,22 @@
             const splash = document.getElementById('splash');
             splash.style.opacity = '0';
             setTimeout(() => splash.remove(), 700);
-            // Trigger pointer lock
-            document.querySelector('canvas')?.requestPointerLock();
+            
+            // Check touch capability
+            const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+            
+            if (!isTouchDevice) {
+                // Safely only trigger pointer lock if the user is on a desktop architecture
+                document.querySelector('canvas')?.requestPointerLock();
+            } else {
+                // Optional: Attempt programmatic screen lock for devices running in web app standalone/PWA configurations
+                if (screen.orientation && screen.orientation.lock) {
+                    screen.orientation.lock('landscape').catch(() => {
+                        // Rejections are expected on typical standard mobile browsers 
+                        // until native fullscreen APIs are fired. The CSS media rule covers it instead.
+                    });
+                }
+            }
         });
     </script>
     </body>

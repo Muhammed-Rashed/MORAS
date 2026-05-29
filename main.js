@@ -98,6 +98,21 @@ function start() {
 
     player.movement.setCamera(camera);
 
+    // Mobile controls
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+
+    if (isTouchDevice) {
+        Promise.all([
+            import('./Phone_input/buttons.js'),
+            import('./Phone_input/joystick.js'),
+            import('./Phone_input/look.js')
+        ]).then(([buttons, joystick, look]) => {
+            look.initLook(cameraController);
+        }).catch(err => {
+            console.error("Failed to load mobile input modules:", err);
+        });
+    }
+
     const FIXED_STEP = 1 / 60;
 
     let accumulator = 0;
@@ -130,4 +145,5 @@ function start() {
 
     renderer.setAnimationLoop(animate);
 }
+
 loadData();
