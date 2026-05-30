@@ -1,4 +1,4 @@
-const SENSITIVITY = 0.004;
+const SENSITIVITY = 0.01;
 
 let _camera = null;
 

@@ -55,7 +55,7 @@ labelRenderer.domElement.style.cssText =
 
 document.body.appendChild(labelRenderer.domElement);
 
-setupLighting(scene);
+setupLighting(scene, renderer);
 
 async function loadData() {
     try {

@@ -1,10 +1,8 @@
 import { keys } from '../player/input.js';
 
-const DEAD_ZONE  = 0.15; // fraction of radius before registering movement
-const RADIUS     = 52;   // px — outer ring
-const KNOB_R     = 24;   // px — inner knob
-
-// ── DOM ──────────────────────────────────────────────────────────────────────
+const DEAD_ZONE = 0.15;
+const RADIUS = 100;
+const KNOB_R = 24;
 
 const wrap = document.createElement('div');
 wrap.style.cssText = `
@@ -39,8 +37,6 @@ knob.style.cssText = `
 wrap.appendChild(knob);
 document.body.appendChild(wrap);
 
-// ── State ─────────────────────────────────────────────────────────────────────
-
 let _activeTouchId = null;
 let _originX = 0;
 let _originY = 0;
@@ -48,9 +44,9 @@ let _originY = 0;
 function _setKeys(nx, ny) {
     // nx, ny are normalised [-1, 1] within the joystick radius
     keys.w = ny < -DEAD_ZONE;
-    keys.s = ny >  DEAD_ZONE;
+    keys.s = ny > DEAD_ZONE;
     keys.a = nx < -DEAD_ZONE;
-    keys.d = nx >  DEAD_ZONE;
+    keys.d = nx > DEAD_ZONE;
 }
 
 function _clearKeys() {
@@ -67,8 +63,6 @@ function _moveKnob(nx, ny) {
     knob.style.transform = `translate(calc(-50% + ${kx}px), calc(-50% + ${ky}px))`;
 }
 
-// ── Touch handlers ────────────────────────────────────────────────────────────
-
 wrap.addEventListener('touchstart', (e) => {
     e.preventDefault();
     if (_activeTouchId !== null) return;
@@ -76,7 +70,7 @@ wrap.addEventListener('touchstart', (e) => {
     _activeTouchId = t.identifier;
     const rect = wrap.getBoundingClientRect();
     _originX = rect.left + RADIUS;
-    _originY = rect.top  + RADIUS;
+    _originY = rect.top + RADIUS;
 }, { passive: false });
 
 document.addEventListener('touchmove', (e) => {
@@ -100,5 +94,5 @@ function _end(e) {
     }
 }
 
-document.addEventListener('touchend',   _end);
+document.addEventListener('touchend', _end);
 document.addEventListener('touchcancel', _end);
