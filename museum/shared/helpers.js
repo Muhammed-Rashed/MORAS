@@ -15,6 +15,9 @@ export const goldMat = new THREE.MeshStandardMaterial({ color: 0xc8a96e, roughne
 export const dimMat = new THREE.MeshStandardMaterial({ color: 0x888888, roughness: 0.6 });
 export const whiteMat = new THREE.MeshStandardMaterial({ color: 0xffffff, roughness: 0.5 });
 
+// Blender models
+const BOOK_MODEL_URL = './museum/models/book.glb';
+
 
 // Font loader (loads once, shared across all sections)
 let _font = null;
@@ -147,8 +150,19 @@ export function addPaper(scene, physicsWorld, x, z, data) {
     physicsWorld.addObject(obj);
 }
 
+
+
 export function addBook(scene, physicsWorld, x, z, data) {
-    const obj = PhysicsObject.cube(0.25, 0.35, 0.4, 0.3, bookMat.clone());
+    // Same collider dimensions as before: 0.25 × 0.35 × 0.4
+    const obj = PhysicsObject.gltf(
+        BOOK_MODEL_URL,
+        0.25, 0.35, 0.4,
+        0.3,
+        {
+            // modelScale: new THREE.Vector3(0.25, 0.35, 0.4),
+        }
+    );
+
     obj.transform.position.set(x, 1.38, z);
     obj.mesh.position.set(x, 1.38, z);
     obj.mesh.rotation.x = Math.PI / 2;
