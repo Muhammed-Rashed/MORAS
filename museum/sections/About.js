@@ -6,6 +6,7 @@ import {
     goldMat,
     dimMat,
     whiteMat,
+    addExhibit
 } from '../shared/helpers.js';
 
 const profilePhoto = '/MORAS/museum/images/file.jpeg';
@@ -25,6 +26,10 @@ function addPhoto(scene, texturePath, x, y, z, w = 2.2, h = 2.8) {
 }
 
 export function buildAbout(scene, physicsWorld, about, x, z) {
+    const centerX = x;
+    const centerZ = z;
+
+    addExhibit(scene, physicsWorld, centerX, centerZ -2, {}, 'pc');
 
     // Wall
     const wallWidth = 15;
@@ -39,7 +44,7 @@ export function buildAbout(scene, physicsWorld, about, x, z) {
     const textZ = z - 0.11;
 
     // Layout regions
-    const centerX = x;
+
     const photoWidth = 2.8;
     const photoHeight = 3.5;
     const photoY = wallY - wallHeight * 0.48 + wallHeight * 0.52;

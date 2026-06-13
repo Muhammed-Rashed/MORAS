@@ -18,6 +18,8 @@ export const whiteMat = new THREE.MeshStandardMaterial({ color: 0xffffff, roughn
 // Blender models
 const BOOK_MODEL_URL = './museum/models/book.glb';
 
+const PC_MODEL_URL = './museum/models/PC.glb';
+
 
 // Font loader (loads once, shared across all sections)
 let _font = null;
@@ -135,6 +137,25 @@ export function addPillar(scene, physicsWorld, x, z) {
     physicsWorld.addObject(obj);
 }
 
+export function addPC(scene, physicsWorld, x, z) {
+    // Same collider dimensions as before: 0.25 × 0.35 × 0.4
+    const obj = PhysicsObject.gltf(
+        PC_MODEL_URL,
+        0.4, 0.35, 0.4,
+        0.4,
+        {
+            // modelScale: new THREE.Vector3(0.25, 0.35, 0.4),
+        }
+    );
+
+    obj.transform.position.set(x, 1.38, z);
+    obj.mesh.position.set(x, 1.38, z);
+    obj.mesh.rotation.x = Math.PI / 2;
+    obj.pickable = true;
+    obj.readable = false;
+    scene.add(obj.mesh);
+    physicsWorld.addObject(obj);
+}
 
 // Exhibit items (paper / book) on a pillar
 export function addPaper(scene, physicsWorld, x, z, data) {
@@ -177,8 +198,11 @@ export function addExhibit(scene, physicsWorld, x, z, data, type = 'paper') {
     addPillar(scene, physicsWorld, x, z);
     if (type === 'book') {
         addBook(scene, physicsWorld, x, z, data);
-    } else {
+    } else if (type === 'paper'){
         addPaper(scene, physicsWorld, x, z, data);
+    }
+    else {
+        addPC(scene, physicsWorld, x, z);
     }
 }
 
