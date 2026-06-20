@@ -114,6 +114,8 @@ class PhysicsObject {
 
         const obj = new PhysicsObject(placeholderGeo, mass, placeholderMat, undefined, options);
 
+        const colliderScale = options.colliderScale ?? new THREE.Vector3(1, 1, 1);
+
         if (options.rotY) {
             obj.transform.quaternion.setFromAxisAngle(
                 new THREE.Vector3(0, 1, 0), options.rotY
@@ -121,7 +123,11 @@ class PhysicsObject {
         }
 
         obj.collider = new BoxCollider(
-            new THREE.Vector3(sizeX / 2, sizeY / 2, sizeZ / 2)
+            new THREE.Vector3(
+                (sizeX * colliderScale.x) / 2,
+                (sizeY * colliderScale.y) / 2,
+                (sizeZ * colliderScale.z) / 2
+            )
         );
 
         if (mass !== Infinity) {
@@ -150,6 +156,9 @@ class PhysicsObject {
             obj.mesh.add(model);
 
             obj._gltfLoaded = true;
+
+            if (obj.onLoaded) obj.onLoaded(model);
+            
         }, undefined, (err) => {
             console.error('[PhysicsObject.gltf] Failed to load:', url, err);
         });

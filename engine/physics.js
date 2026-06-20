@@ -30,7 +30,7 @@ class PhysicsWorld {
     }
 
     step(deltaTime) {
-        const substeps = 4;
+        const substeps = 10;
         const dt = deltaTime / substeps;
 
         for (let step = 0; step < substeps; step++) {

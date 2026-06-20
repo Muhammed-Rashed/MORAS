@@ -144,9 +144,26 @@ export function addPC(scene, physicsWorld, x, z) {
         0.4, 0.35, 0.4,
         0.4,
         {
-            // modelScale: new THREE.Vector3(0.25, 0.35, 0.4),
+            colliderScale: new THREE.Vector3(2, 2.6, 2)
         }
     );
+
+    obj.onLoaded = (model) => {
+        const screen = model.getObjectByName('Screen');
+        if (screen) {
+            screen.material = new THREE.MeshStandardMaterial({
+                color: 0x00ffff,
+                emissive: 0x00ffff,
+                emissiveIntensity: 1.5,
+                toneMapped: false,
+            });
+
+            // Optional: cast actual light onto nearby geometry
+            const screenLight = new THREE.PointLight(0x00ffff, 1.5, 2.5);
+            screenLight.position.copy(screen.position);
+            screen.add(screenLight);
+        }
+    };
 
     obj.transform.position.set(x, 1.38, z);
     obj.mesh.position.set(x, 1.38, z);
@@ -181,6 +198,7 @@ export function addBook(scene, physicsWorld, x, z, data) {
         0.3,
         {
             // modelScale: new THREE.Vector3(0.25, 0.35, 0.4),
+            colliderScale: new THREE.Vector3(2, 0.5, 2)
         }
     );
 
@@ -198,7 +216,7 @@ export function addExhibit(scene, physicsWorld, x, z, data, type = 'paper') {
     addPillar(scene, physicsWorld, x, z);
     if (type === 'book') {
         addBook(scene, physicsWorld, x, z, data);
-    } else if (type === 'paper'){
+    } else if (type === 'paper') {
         addPaper(scene, physicsWorld, x, z, data);
     }
     else {
